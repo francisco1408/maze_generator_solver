@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header> <div>Maze Solver</div></header>
+
+        
+    <nav>
+        <div class = "generator">
+            <div class="generator__inputs">
+                <div class = "generator__inputs-singleinput">
+                    <label for="rows">Number of rows</label>
+                    <input type="text" label = "Number of rows" class="input" id="rows">
+                </div>
+                <div class = "generator__inputs-singleinput">
+                    <label for="columns">Number of columns</label>
+                    <input type="text" label = "Number of columns" class="input" id="columns">
+                </div>
+            </div>
+            <div class="generator__actions">
+                <div class="generator__actions-singleaction"> 
+                    <Button id = "generate" class="button">Generate maze</Button>
+                </div>
+                <div class="generator__actions-singleaction"> 
+                    <Button id="solve" class="button">Solve</Button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="maze-frame">
+            <div class="maze" id = "maze"></div>
+    </div>
+    <footer>
+        <ul class="ul">
+           <div> <li>My name</li></div>
+           <div> <li>email</li></div>
+           <div> <li>linkedIn</li></div>
+           <div> <li>github profile</li></div>
+        </ul>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+}
+header{
+    /* background-color: #d7f; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+    background-color: #5D62A3;
+}
+header div{
+    margin: 10px;
+}
+nav{
+    width: 100%;
+    height: 90px;
+    background-color: #F1E6C6;
+}
+.generator{
+    max-width: 100%;
+    height: 100%;
+    /* background-color: blueviolet; */
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+@media screen and (min-width:1500px){
+    nav{
+        display: flex;
+        justify-content: center;
+    }
+    .generator{
+        width: 1500px;
+    }
+}
+.generator__inputs, .generator__actions{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 40%;
+    height: 50%; 
+}
+.generator__inputs-singleinput{
+    flex-direction: column;
+}
+.generator__inputs-singleinput, .generator__actions-singleaction{
+    height: 80%;
+    width: 40%;
+    margin: 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input, .button{
+    width: 100%;
+    height: 100%;
+    padding: 3px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.maze-frame{
+    --side:calc(100vh - 240px);
+    width: 100%;
+    height: var(--side);
+    background-color: #F1E6C6;
+    display:flex;
+    justify-content: center;
+    --a:50px;
+}
+.maze{
+    border-radius: 12px;
+    width: var(--side);
+    height: var(--side);
+    background-color: #E5B994;
+    display: flex;
+    flex-direction: column; 
+}
+.row{
+    display: flex;
+    width: 100%;
+}
+.cell{
+    outline: 2px solid red;
+}
+
+:root{
+    --h:calc(100vh);
+    --w:100vw;
+}
+@media (max-width: calc(70vh)){
+    .maze-frame{
+        min-width: 100vw;
+        max-height: 100vw;
+    }
+    .maze{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .generator > div{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+               
+        min-width: 320px;
+    }
+    .control{
+        width: 40%;
+        
+    }
+}
+
+footer{
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F1E6C6;
+}
+
+.ul{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+ul > div{
+    width: fit-content;
+    margin: 5px 10px;
+    width: 150px;
+    height: 25px;
+    outline: 2px solid #5B1D1B;
+    background-color: #F1E6C6;
+    color: #5D62A3;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
