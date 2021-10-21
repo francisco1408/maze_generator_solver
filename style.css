@@ -2,7 +2,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 header{
     /* background-color: #d7f; */
@@ -10,7 +10,7 @@ header{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 90px;
+    height: 10vh;
     background-color: #5D62A3;
 }
 header div{
@@ -18,7 +18,7 @@ header div{
 }
 nav{
     width: 100%;
-    height: 90px;
+    height: 10vh;
     background-color: #F1E6C6;
 }
 .generator{
@@ -63,6 +63,7 @@ nav{
     align-items: center;
 }
 .input, .button{
+    text-align: center; 
     width: 100%;
     height: 100%;
     padding: 3px;
@@ -74,13 +75,18 @@ nav{
 
 
 .maze-frame{
-    --side:calc(100vh - 240px);
+    --side:calc(72vh);
     width: 100%;
     height: var(--side);
     background-color: #F1E6C6;
     display:flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content:center;
     --a:50px;
+}
+.notMaze {
+    display: inline-block;
+    max-width: 100px;
 }
 .maze{
     border-radius: 12px;
@@ -95,7 +101,8 @@ nav{
     width: 100%;
 }
 .cell{
-    outline: 2px solid red;
+    /* border: 0.01px solid #5D62A3; */
+    /* outline-style: inset; */
 }
 
 :root{
@@ -129,6 +136,7 @@ nav{
 
 footer{
     width: 100%;
+    height: 8vh;
     min-height: 40px;
     display: flex;
     justify-content: center;
@@ -155,4 +163,19 @@ ul > div{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* cell classes  */
+
+.border-top{
+    border-top: solid 2px black;
+}
+.border-right{
+    border-right: solid 2px black;
+}
+.border-bottom{
+    border-bottom: solid 2px black;
+}
+.border-left{
+    border-left: solid 2px black;
 }
