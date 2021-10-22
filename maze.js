@@ -1,6 +1,6 @@
 
 class cell{
-    constructor(side,rowN,id,mazeRows,mazeColums){
+    constructor(side,rowN,id,mazeRows,mazeColums,mazeid){
         this.setWalls(side);
         this.buildCssClass();
         this.buildDomElement();
@@ -8,8 +8,24 @@ class cell{
         this.id = id;
         this.mazeRows = mazeRows;
         this.mazeColums = mazeColums;
+        this.mazeID = mazeid;
         this.getWalls();
     }
+    getNeighbour(sideWall){
+        let littleRouter = {
+            "top":this.topWall,
+            "right":this.rightWall,
+            "bottom":this.bottomWall,
+            "left":this.leftWall,
+        };
+        if(littleRouter[sideWall] == null){
+            return null;
+        } else {
+           let twoCells = mazes[this.mazeID].getCellsFromWall(littleRouter[sideWall]);
+           return (twoCells[0] == this.id) ? twoCells[1] : twoCells[0];
+        }   
+    }
+    
     setWalls(side){
         this.top = (side.includes("1")) ? true : this.top;
         this.right = (side.includes("2")) ? true : this.right;
@@ -34,6 +50,7 @@ class cell{
         this.bottomWall = (this.yCordenate + 1 == this.mazeRows) ? null  : (this.yCordenate * this.mazeColums) + ((this.yCordenate + 1) * (this.mazeColums - 1)) + this.xCordenate;
         this.rightWall = (this.xCordenate + 1 == this.mazeColums) ? null : (this.yCordenate * (this.mazeColums - 1)) + (this.yCordenate * this.mazeColums) + this.xCordenate;
     }
+    mazeID = 0;
     xCordenate = 0;
     yCordenate = 0;
     mazeRows = 0;
@@ -52,7 +69,8 @@ class cell{
 }
 
 class maze {
-    constructor(rows,columns){
+    constructor(rows,columns,mazeid){
+        this.mazeID = mazeid;
         this.rowsNumber = rows;
         this.columnsNumber = columns;
         this.generateMaze();
@@ -64,7 +82,7 @@ class maze {
                 sideString = (j == columns - 1  || this.ran()) ? sideString + "2" : sideString;
                 sideString = (i == rows - 1  || this.ran()) ? sideString + "3" : sideString;
                 sideString = (j == 0  || this.ran()) ? sideString + "4" : sideString;
-                let oneCell = new cell(sideString,i,cellCount,this.rowsNumber,this.columnsNumber);
+                let oneCell = new cell(sideString,i,cellCount,this.rowsNumber,this.columnsNumber,this.mazeID);
                 this.cells.push(oneCell);
                 cellCount++;
             }
@@ -83,6 +101,7 @@ class maze {
     columnsNumber = 0;
     walls = [];
     cells = [];
+    mazeID = 0;
     givePercentages(r,c){
         let xPercent = 100/parseInt(c);
         let yPercent = 100/parseInt(r);
@@ -110,7 +129,7 @@ class maze {
         }
         document.getElementById(mazeTagID).innerHTML = mazeHTML;
     }
-    getCallsFromWall(wall){
+    getCellsFromWall(wall){
         let rn = Math.floor((wall) / ((this.columnsNumber * 2 ) - 1 ));
         let wn = (wall) % ((this.columnsNumber * 2 ) - 1 ) + 1;
         let pc = this.columnsNumber * rn;
