@@ -12,5 +12,5 @@ document.getElementById("generate").addEventListener("click",()=>{
     maze1.givePercentages(rows,columns);
     
     mazes.push(maze1);
-    
+    maze1.generateMaze();
 });

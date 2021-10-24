@@ -179,3 +179,7 @@ ul > div{
 .border-left{
     border-left: solid 2px black;
 }
+
+.red-cell{
+    background-color: #ff5599;
+}
