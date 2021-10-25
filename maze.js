@@ -17,6 +17,7 @@ class cell{
         this.colorCss_class = "red-cell";
         this.buildCssClass();
         this.buildDomElement();
+        this.updateClassInDOM();
     }
     getNeighbour(sideWall){
         let littleRouter = {
@@ -52,7 +53,10 @@ class cell{
     }
     buildDomElement(){
         // this.domElement = "<div class =" + "'" + this.CSSclass + "'"  + ">" + this.id + "</div>";
-        this.domElement = "<div class =" + "'" + this.CSSclass + "'"  + ">" + "</div>";
+        this.domElement = "<div id = 'cell" + this.id + "' class =" + "'" + this.CSSclass + "'"  + ">" + "</div>";
+    }
+    updateClassInDOM(){
+        document.getElementById("cell" + this.id.toString()).className = this.CSSclass;
     }
     getWalls(){
         this.yCordenate = Math.floor(Math.floor(this.id/this.mazeColums));
@@ -79,7 +83,7 @@ class cell{
     CSSclass = "";
     id = 0;
     colorCss_class = "";
-    domElement = "<div class =" + "'" + this.CSSclass + "'"  + ">a</div>";
+    domElement = "<div id = 'cell" + this.id + "' class =" + "'" + this.CSSclass + "'"  + ">a</div>";
 }
 
 class maze {
@@ -104,7 +108,7 @@ class maze {
     }
     ran = ()=> ((Math.random() * (1 - 0) + 0) < 0.75) ? false : true; 
     generateMaze(){
-        let construct = new constructionWorker(2,3,this.columnsNumber,this.mazeID);
+        let construct = new constructionWorker(0,0,this.columnsNumber,this.mazeID);
     }
     rowsNumber = 0;
     columnsNumber = 0;
@@ -195,8 +199,9 @@ class constructionWorker{
             oneCell.left = (oneCell.leftWall == _wallID) ? false : oneCell.left;
             oneCell.buildCssClass();
             oneCell.buildDomElement();
+            oneCell.updateClassInDOM();
         }
-        mazes[this.mazeID].render();
+        // mazes[this.mazeID].render();
     }
     async buildPath(){
         let it_counter = 0;
@@ -205,7 +210,6 @@ class constructionWorker{
             let move = await this.moveCell();
             
         }
-        console.log(it_counter);
     }
     async moveCell(){
         return new Promise(function(resolve, reject) {
@@ -217,12 +221,10 @@ class constructionWorker{
     }
     setCellRed(){
         this.currentCellObj.setRed();
-        mazes[this.mazeID].render();
-        mazes[this.mazeID].givePercentages();
+        // mazes[this.mazeID].render();
+        // mazes[this.mazeID].givePercentages();
     }
     chooseNextCell(){
-        console.log(".....................................");
-        console.log(this.currentCelliD);
         let availableWalls = this.currentCellObj.getWalls().filter(wall => wall != null);
         let availableCells = [];
         let referenceWalls = [];
@@ -236,10 +238,7 @@ class constructionWorker{
             }
         }
         if(availableCells.length == 0){
-            console.log("Stop");
             let backResult = this.goBack();
-            console.log("000");
-            console.log(backResult);
             if(backResult == -1){
                 this.continueSearch = false;
             } else {
@@ -258,18 +257,12 @@ class constructionWorker{
        
     }
     goBack(){
-        console.log("ggggggg");
-        console.log(this.cellPath);
         for(let f = this.cellPath.length - 1 ; f >= 0 ; f--){
-            console.log("--");
             let __cell = this.cellPath[f];
-            console.log(__cell);
             let __cellObj = mazes[this.mazeID].cells[__cell];
             let __notNullWalls = __cellObj.getWalls().filter(wall => wall != null);
-            console.log("*********")
             for (let v = 0 ; v < __notNullWalls.length ; v++){
                 let __twoCells = mazes[this.mazeID].getCellsFromWall(__notNullWalls[v]);
-                console.log(__twoCells);
                 let __candidateCellID =  (__twoCells[0] == __cell) ? __twoCells[1] : __twoCells[0];
                 if(!this.visitedCells[__candidateCellID]){
                     return __cell;
