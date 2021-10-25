@@ -136,7 +136,8 @@ class maze {
     }
     render(mazeTagid){
         if(mazeTagid != null){
-            this.mazeTagID = mazeTagid
+            this.mazeTagID = mazeTagid;
+            // document.getElementById(mazeTagid).classList.add("maze");
         } else {
             mazeTagid = this.mazeTagID;
         }
@@ -174,7 +175,6 @@ class constructionWorker{
             this.visitedCells.push(false);
             mazes[this.mazeID].visitedCells = this.visitedCells;
         }
-        console.log(mazes[this.mazeID].visitedCells);
         this.visitedCells[this.currentCelliD] = true;
         this.setCellRed();
         this.cellPath.push(this.currentCelliD);
@@ -213,7 +213,7 @@ class constructionWorker{
     }
     async moveCell(){
         return new Promise(function(resolve, reject) {
-            setTimeout(resolve, 1);
+            setTimeout(resolve, 0);
         }).then(()=>{
             this.chooseNextCell();
                 this.setCellRed();

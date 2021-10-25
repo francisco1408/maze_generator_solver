@@ -96,14 +96,7 @@ nav{
     display: flex;
     flex-direction: column; 
 }
-.row{
-    display: flex;
-    width: 100%;
-}
-.cell{
-    /* border: 0.01px solid #5D62A3; */
-    /* outline-style: inset; */
-}
+
 
 :root{
     --h:calc(100vh);
@@ -163,29 +156,4 @@ ul > div{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* cell classes  */
-
-.border-top{
-    border-top: solid 2px black;
-}
-.border-right{
-    border-right: solid 2px black;
-}
-.border-bottom{
-    border-bottom: solid 2px black;
-}
-.border-left{
-    border-left: solid 2px black;
-}
-
-.red-cell{
-    background-color: #ff5599;
-    transition:0.15s;
-}
-
-.red-cell:hover{
-    transform: scale(1.05);
-    background-color: #117799;
 }

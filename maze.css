@@ -1,0 +1,35 @@
+:root{
+    --visitedCellColor:#ff5599;
+    --hoverCellColor: #aa22aa;
+    --hoverCellTransitionVelocity: 0.15s;
+    --wallBorderType: solid;
+    --wallBorderThickness: 2px;
+    --wallBorderColor: #304079;
+}
+
+.row{
+    display: flex;
+    width: 100%;
+}
+.border-top{
+    border-top: var(--wallBorderType) var(--wallBorderThickness) var(--wallBorderColor);
+}
+.border-right{
+    border-right: var(--wallBorderType) var(--wallBorderThickness) var(--wallBorderColor);
+}
+.border-bottom{
+    border-bottom: var(--wallBorderType) var(--wallBorderThickness) var(--wallBorderColor);
+}
+.border-left{
+    border-left: var(--wallBorderType) var(--wallBorderThickness) var(--wallBorderColor);
+}
+
+.red-cell{
+    background-color: var(--visitedCellColor);
+    transition:var(--hoverCellTransitionVelocity);
+}
+
+.red-cell:hover{
+    transform: scale(1.1);
+    background-color: var(--hoverCellColor);
+}
