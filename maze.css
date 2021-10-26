@@ -3,7 +3,7 @@
     --hoverCellColor: #aa22aa;
     --hoverCellTransitionVelocity: 0.15s;
     --wallBorderType: solid;
-    --wallBorderThickness: 2px;
+    --wallBorderThickness: 0.02em;
     --wallBorderColor: #304079;
 }
 
@@ -30,6 +30,6 @@
 }
 
 .red-cell:hover{
-    transform: scale(1.1);
+    transform: scale(1.02);
     background-color: var(--hoverCellColor);
 }

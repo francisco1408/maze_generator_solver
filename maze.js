@@ -67,6 +67,22 @@ class cell{
          this.rightWall = (this.xCordenate + 1 == this.mazeColums) ? null   : (this.yCordenate * (this.mazeColums - 1)) + (this.yCordenate * this.mazeColums) + this.xCordenate;
          return [this.topWall, this.rightWall, this.bottomWall, this.leftWall];
     }
+    getPaths(){
+        let paths = [];
+        if(!this.top){
+            paths.push(this.topWall);
+        }
+        if(!this.right){
+            paths.push(this.rightWall);
+        }
+        if(!this.bottom){
+            paths.push(this.bottomWall);
+        }
+        if(!this.left){
+            paths.push(this.leftWall);
+        }
+        return paths;
+    }
     mazeID = 0;
     xCordenate = 0;
     yCordenate = 0;
@@ -280,4 +296,55 @@ class constructionWorker{
         }
         return possibleValues[Math.floor((Math.random() * (possibleValues.length - 0) + 0))];
     } 
+}
+class solver{
+    constructor(mazeid){
+        this.maze_id = mazeid;
+        for(let y = 0 ; y < mazes[this.maze_id].cells.length ; y++){
+            this.visited_cells.push(false);
+        }
+        // For now, the starting cell will be the upper left corner cell and the target cell will be the lower right corner one
+        let initialCell = 0;
+        let targetCell = mazes[this.maze_id].cells.length - 1;
+        //Initial cell is the first wave front
+        let currentWaveFront = [initialCell];
+        this.wave_fronts.push(currentWaveFront);
+        this.visited_cells[initialCell] = true;
+
+        let found_it = false;
+        while(!found_it){
+            let new_wave_front = [];
+            //Gets next-step cells for each of the cells in the current wave front
+            for(let k = 0 ; k < currentWaveFront.length ; k++){
+                let _cell_id = currentWaveFront[k];
+                let _cell_obj = mazes[this.maze_id].cells[_cell_id]; 
+                let _walls_ = _cell_obj.getPaths();
+                for(let j = 0 ; j < _walls_.length ; j++){
+                    let _wall_ = _walls_[j];
+                    let _both_cells = mazes[this.maze_id].getCellsFromWall(_wall_);
+                    let _next_cell =  (_both_cells[0] == _cell_id) ? _both_cells[1] : _both_cells[0];
+                    if(_next_cell == targetCell){
+                        found_it = true;
+                        j = _walls_.length;
+                        k = currentWaveFront.length;
+                    }
+                    if(!found_it && !this.visited_cells[_next_cell]){
+                        this.visited_cells[_next_cell] = true;
+                        new_wave_front.push(_next_cell);
+                    }
+                }
+            }
+            if(!found_it){
+                currentWaveFront = new_wave_front;
+                this.wave_fronts.push(new_wave_front);   
+            }
+            
+            
+        }
+        console.log(this.wave_fronts);
+    }
+    maze_id = 0;
+    wave_fronts = [];
+    visited_cells = [];
+
 }
