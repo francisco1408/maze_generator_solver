@@ -19,6 +19,12 @@ class cell{
         this.buildDomElement();
         this.updateClassInDOM();
     }
+    setPurple(){
+        this.colorCss_class = "purple-cell";
+        this.buildCssClass();
+        this.buildDomElement();
+        this.updateClassInDOM();
+    }
     getNeighbour(sideWall){
         let littleRouter = {
             "top":this.topWall,
@@ -52,8 +58,8 @@ class cell{
         this.CSSclass = this.CSSclass + " " + this.colorCss_class;
     }
     buildDomElement(){
-        // this.domElement = "<div class =" + "'" + this.CSSclass + "'"  + ">" + this.id + "</div>";
         this.domElement = "<div id = 'cell" + this.id + "' class =" + "'" + this.CSSclass + "'"  + ">" + "</div>";
+        // this.domElement = "<div id = 'cell" + this.id + "' class =" + "'" + this.CSSclass + "'"  + ">" + this.id + "</div>";
     }
     updateClassInDOM(){
         document.getElementById("cell" + this.id.toString()).className = this.CSSclass;
@@ -337,11 +343,40 @@ class solver{
             if(!found_it){
                 currentWaveFront = new_wave_front;
                 this.wave_fronts.push(new_wave_front);   
+                
             }
-            
-            
         }
         console.log(this.wave_fronts);
+        // Now lets go back
+        let the_path = [targetCell];
+        let __backwards_cell = targetCell; 
+        for(let v = this.wave_fronts.length - 1 ; v >= 0 ; v--){
+            let __wave_front = this.wave_fronts[v];
+            let __cell_obj = mazes[this.maze_id].cells[__backwards_cell];
+            let _walls_ = __cell_obj.getPaths();
+                for(let j = 0 ; j < _walls_.length ; j++){
+                    let _wall_ = _walls_[j];
+                    let _both_cells = mazes[this.maze_id].getCellsFromWall(_wall_);
+                    let _check_cell =  (_both_cells[0] == __backwards_cell) ? _both_cells[1] : _both_cells[0];
+                    for(let b = 0 ; b < __wave_front.length ; b++){
+                        let _wave_front_cell = __wave_front[b];
+                        if(_check_cell == _wave_front_cell){
+                            the_path.push(_check_cell);
+                            __backwards_cell = _check_cell;
+                            // Stops the iterations
+                            b =  __wave_front.length;
+                            j = _walls_.length;
+                        }
+                    }
+                }
+        }
+        console.log("the_path:");
+        console.log(the_path);
+        //Changes color of solution path cells
+        for(let s = 0 ; s < the_path.length ; s++){
+            let _solution_cell_obj = mazes[this.maze_id].cells[the_path[s]];
+            _solution_cell_obj.setPurple();
+        }
     }
     maze_id = 0;
     wave_fronts = [];

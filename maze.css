@@ -3,8 +3,13 @@
     --hoverCellColor: #aa22aa;
     --hoverCellTransitionVelocity: 0.15s;
     --wallBorderType: solid;
-    --wallBorderThickness: 0.02em;
-    --wallBorderColor: #304079;
+    --wallBorderThickness: 0.05em;
+    --wallBorderColor: #243369;
+/* 
+    --solutionBorderType: solid;
+    --solutionBorderThickness: 0.02em;
+    --solutionBorderColor: #6e3b90; */
+    --solutionCellColor: #aa60a6;
 }
 
 .row{
@@ -32,4 +37,12 @@
 .red-cell:hover{
     transform: scale(1.02);
     background-color: var(--hoverCellColor);
+}
+
+.purple-cell{
+    background-color: var(--solutionCellColor);
+}
+.purple-cell:hover{
+    transform: scale(1.02);
+    background-color: var(--wallBorderColor);
 }
