@@ -25,6 +25,12 @@ class cell{
         this.buildDomElement();
         this.updateClassInDOM();
     }
+    setGreen(){
+        this.colorCss_class = "green-cell";
+        this.buildCssClass();
+        this.buildDomElement();
+        this.updateClassInDOM();
+    }
     getNeighbour(sideWall){
         let littleRouter = {
             "top":this.topWall,
@@ -313,39 +319,34 @@ class solver{
         let initialCell = 0;
         let targetCell = mazes[this.maze_id].cells.length - 1;
         //Initial cell is the first wave front
+        
+        this.findPath(initialCell,targetCell);
+        
+    }
+    maze_id = 0;
+    wave_fronts = [];
+    visited_cells = [];
+    async findPath(initialCell,targetCell){
         let currentWaveFront = [initialCell];
         this.wave_fronts.push(currentWaveFront);
         this.visited_cells[initialCell] = true;
 
         let found_it = false;
         while(!found_it){
-            let new_wave_front = [];
-            //Gets next-step cells for each of the cells in the current wave front
-            for(let k = 0 ; k < currentWaveFront.length ; k++){
-                let _cell_id = currentWaveFront[k];
-                let _cell_obj = mazes[this.maze_id].cells[_cell_id]; 
-                let _walls_ = _cell_obj.getPaths();
-                for(let j = 0 ; j < _walls_.length ; j++){
-                    let _wall_ = _walls_[j];
-                    let _both_cells = mazes[this.maze_id].getCellsFromWall(_wall_);
-                    let _next_cell =  (_both_cells[0] == _cell_id) ? _both_cells[1] : _both_cells[0];
-                    if(_next_cell == targetCell){
-                        found_it = true;
-                        j = _walls_.length;
-                        k = currentWaveFront.length;
-                    }
-                    if(!found_it && !this.visited_cells[_next_cell]){
-                        this.visited_cells[_next_cell] = true;
-                        new_wave_front.push(_next_cell);
-                    }
-                }
-            }
-            if(!found_it){
-                currentWaveFront = new_wave_front;
-                this.wave_fronts.push(new_wave_front);   
-                
+            console.log("find path iteration");
+            let response = await this.exploreCell(currentWaveFront,targetCell);
+            if(response[0]){
+                found_it = true;
+            } else {
+                let old_wave_front = currentWaveFront;
+                currentWaveFront = response[1];
+                this.colorGreenExploredCells(old_wave_front,currentWaveFront);
             }
         }
+        ////....
+        this.colorGreenExploredCells(currentWaveFront,[]);
+        ////...
+        console.log("wave fronts");
         console.log(this.wave_fronts);
         // Now lets go back
         let the_path = [targetCell];
@@ -373,13 +374,59 @@ class solver{
         console.log("the_path:");
         console.log(the_path);
         //Changes color of solution path cells
-        for(let s = 0 ; s < the_path.length ; s++){
-            let _solution_cell_obj = mazes[this.maze_id].cells[the_path[s]];
-            _solution_cell_obj.setPurple();
+        this.printPath(the_path);
+    }
+    async exploreCell(currentWaveFront,targetCell){
+        return new Promise(function(resolve, reject) {
+            setTimeout(resolve, 75);
+        }).then(()=>{
+            let new_wave_front = [];
+            //Gets next-step cells for each of the cells in the current wave front
+            for(let k = 0 ; k < currentWaveFront.length ; k++){
+                let _cell_id = currentWaveFront[k];
+                let _cell_obj = mazes[this.maze_id].cells[_cell_id]; 
+                let _walls_ = _cell_obj.getPaths();
+                for(let j = 0 ; j < _walls_.length ; j++){
+                    let _wall_ = _walls_[j];
+                    let _both_cells = mazes[this.maze_id].getCellsFromWall(_wall_);
+                    let _next_cell =  (_both_cells[0] == _cell_id) ? _both_cells[1] : _both_cells[0];
+                    if(_next_cell == targetCell){
+                        return [true];
+                    }
+                    if(!this.visited_cells[_next_cell]){
+                        this.visited_cells[_next_cell] = true;
+                        new_wave_front.push(_next_cell);
+                        
+                    }
+                }
+            }
+            this.wave_fronts.push(new_wave_front);
+            return [false,new_wave_front];
+        });
+    }
+    async printPath(path){
+        console.log("Print_path");
+        console.log(path);
+        let it_counter = 0;
+        while(it_counter < path.length){
+            console.log(it_counter);
+            let color = await this.colorCell(path[it_counter]);
+            it_counter++;
         }
     }
-    maze_id = 0;
-    wave_fronts = [];
-    visited_cells = [];
-
+    async colorCell(cell_id){
+        return new Promise(function(resolve, reject) {
+            setTimeout(resolve, 10);
+        }).then(()=>{
+            mazes[this.maze_id].cells[cell_id].setPurple();
+        });
+    }
+    colorGreenExploredCells(oldWaveFront,currentWaveFront){
+        for(let c = 0 ; c < oldWaveFront.length ; c++){
+            mazes[this.maze_id].cells[oldWaveFront[c]].setRed();
+        }
+        for(let c = 0 ; c < currentWaveFront.length ; c++){
+            mazes[this.maze_id].cells[currentWaveFront[c]].setGreen();
+        }
+    }
 }

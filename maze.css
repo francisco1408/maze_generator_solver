@@ -10,6 +10,8 @@
     --solutionBorderThickness: 0.02em;
     --solutionBorderColor: #6e3b90; */
     --solutionCellColor: #aa60a6;
+
+    --exploredCellColor: #60ca90;
 }
 
 .row{
@@ -45,4 +47,8 @@
 .purple-cell:hover{
     transform: scale(1.02);
     background-color: var(--wallBorderColor);
+}
+
+.green-cell{
+    background-color: var(--exploredCellColor);
 }
