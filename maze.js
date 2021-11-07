@@ -1,5 +1,4 @@
-
-class cell{
+class cell {
     constructor(side,rowN,id,mazeRows,mazeColums,mazeid){
         this.setWalls(side);
         this.buildCssClass();
@@ -113,7 +112,6 @@ class cell{
     colorCss_class = "";
     domElement = "<div id = 'cell" + this.id + "' class =" + "'" + this.CSSclass + "'"  + ">a</div>";
 }
-
 class maze {
     constructor(rows,columns,mazeid){
         this.mazeID = mazeid;
@@ -192,8 +190,7 @@ class maze {
         return [cell1,cell2];
     }
 }
-
-class constructionWorker{
+class constructionWorker {
     constructor(initialX,initialY,mazeColumns,mazeid){
         this.mazeID = mazeid;
         this.currentCelliD = (initialY * mazeColumns) + initialX;
@@ -309,7 +306,7 @@ class constructionWorker{
         return possibleValues[Math.floor((Math.random() * (possibleValues.length - 0) + 0))];
     } 
 }
-class solver{
+class solver {
     constructor(mazeid){
         this.maze_id = mazeid;
         for(let y = 0 ; y < mazes[this.maze_id].cells.length ; y++){
@@ -378,7 +375,7 @@ class solver{
     }
     async exploreCell(currentWaveFront,targetCell){
         return new Promise(function(resolve, reject) {
-            setTimeout(resolve, 75);
+            setTimeout(resolve, 20);
         }).then(()=>{
             let new_wave_front = [];
             //Gets next-step cells for each of the cells in the current wave front
@@ -416,7 +413,7 @@ class solver{
     }
     async colorCell(cell_id){
         return new Promise(function(resolve, reject) {
-            setTimeout(resolve, 10);
+            setTimeout(resolve, 5);
         }).then(()=>{
             mazes[this.maze_id].cells[cell_id].setPurple();
         });
