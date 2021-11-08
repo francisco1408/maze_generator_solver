@@ -49,7 +49,7 @@ const applyChange = (_change,_comp,_ratio,_remainder_percentage,_scroll_directio
         }
     }
 };
-const changes = (_component_configurations,_ui_rules_configurations,__ratio,__remainder_percentage,__scroll_direction)=>{
+const apply_rules = (_component_configurations,_ui_rules_configurations,__ratio,__remainder_percentage,__scroll_direction)=>{
     // For each list of components
     for(let i = 0 ; i < _component_configurations.length ; i++){
         // For each component
@@ -92,7 +92,7 @@ let scroll_container = [document.querySelector(".scroll-container")];
 let titles = document.getElementsByClassName("titles");
 let lines = document.getElementsByClassName("lineContainer");
 let lines_container = document.getElementsByClassName("section1__subcontainer-bottom");
-//
+//Configures the ui rules that apply to each dom component
 const component_configurations = [
     {"component_list":scroll_container, "configuration_key":"scroll_container"},
     {"component_list":titles, "configuration_key":"titles"},
@@ -102,15 +102,14 @@ const component_configurations = [
 let last_position = 0;
 scroll_container[0].addEventListener("scroll",()=>{
     //Uses section 1 as reference to know the vertical position
-    let section1 = document.querySelectorAll(".section1")[0];
-    let position_data = section1.getBoundingClientRect();
-    let viewport_height = position_data.height;
-    let top_distance = position_data.top * -1;
-    let ratio = top_distance/viewport_height;
+    let section1             = document.querySelectorAll(".section1")[0];
+    let position_data        = section1.getBoundingClientRect();
+    let viewport_height      = position_data.height;
+    let top_distance         = position_data.top * -1;
+    let ratio                = top_distance/viewport_height;
     let remainder_percentage = (top_distance % viewport_height) / 1000;
-    let new_position = top_distance;
-    let scroll_direction = (last_position - new_position < 0) ? "down" : "up";
-    last_position = new_position;
-    changes(component_configurations,ui_rules_configurations,ratio,remainder_percentage,scroll_direction);
-    
+    let new_position         = top_distance;
+    let scroll_direction     = (last_position - new_position < 0) ? "down" : "up";
+    last_position            = new_position;
+    apply_rules(component_configurations,ui_rules_configurations,ratio,remainder_percentage,scroll_direction);
 });
