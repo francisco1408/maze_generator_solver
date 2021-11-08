@@ -1,5 +1,5 @@
 //Defines the final backrgound color for each full vh 
-const colorInterpolation = (initial,final,percent) =>{
+const colorInterpolation = (initial,final,percent) => {
     //Gets initial and final values of red, green and blue on decimal
     let initial_red   = parseInt(initial.substring(1,3),16);
     let initial_green = parseInt(initial.substring(3,5),16);
@@ -22,6 +22,16 @@ const colorInterpolation = (initial,final,percent) =>{
     //Returns new hex value
     return "#" + new_red + new_green + new_blue;
 };
+const simpleInterpolation = (initial,final,percent) => initial + (final -  initial) * percent;
+
+const configurations = {
+    "lineContainer":[
+        {"property":"opacity","initialValue":1,"finalValue":0,"from":0.2,"to":0.6}
+    ],
+    "section1__subcontainer_bottom":[
+        {"property":"class","name":"disappear_line","direction":"down","from":0.2,"to":0.4}
+    ]
+};
 const backgound_color_list = [
     {"type":"color", "value":"#171717"},
     {"type":"color", "value":"#160637"},
@@ -31,6 +41,9 @@ const backgound_color_list = [
 let scroll_container = document.querySelector(".scroll-container");
 let title = document.querySelector(".section1__subcontainer-center");
 let subtitle = document.querySelector(".subtitle-container");
+let lines = document.getElementsByClassName("lineContainer");
+let lines_container = document.getElementsByClassName("section1__subcontainer-bottom");
+console.log(lines);
 //Sets the scroll event
 let last_position = 0;
 
@@ -40,7 +53,9 @@ scroll_container.addEventListener("scroll",()=>{
     let position_data = section1.getBoundingClientRect();
     let viewport_height = position_data.height;
     let top_distance = position_data.top * -1;
-    let full_sections = parseInt(top_distance/viewport_height);
+    let ratio = top_distance/viewport_height;
+    
+    let full_sections = parseInt(ratio);
     let remainder_percentage = (top_distance % viewport_height) / 1000;
     let new_position = top_distance;
     let scroll_direction = (last_position - new_position < 0) ? "down" : "up";
@@ -61,12 +76,10 @@ scroll_container.addEventListener("scroll",()=>{
     //====================================================================
     //Titles
     if(scroll_direction == "down" && full_sections == 0){
-        console.log("in");
         title.classList.remove("appear_title");
         title.classList.add("disappear_title");
         subtitle.classList.remove("appear_title");
         subtitle.classList.add("disappear_title");
-        
     } else if(scroll_direction == "up" && full_sections == 0){
         title.classList.remove("disappear_title");
         title.classList.add("appear_title");
@@ -78,25 +91,32 @@ scroll_container.addEventListener("scroll",()=>{
         subtitle.classList.remove("appear_title");
         subtitle.classList.remove("disappear_title");
     }
-    //Animated bars
-    if(scroll_direction == "down" && full_sections == 0){
-        console.log("in");
-        title.classList.remove("appear_title");
-        title.classList.add("disappear_title");
-        subtitle.classList.remove("appear_title");
-        subtitle.classList.add("disappear_title");
-        
-    } else if(scroll_direction == "up" && full_sections == 0){
-        title.classList.remove("disappear_title");
-        title.classList.add("appear_title");
-        subtitle.classList.remove("disappear_title");
-        subtitle.classList.add("appear_title");
-    } else {
-        title.classList.remove("appear_title");
-        title.classList.remove("disappear_title");
-        subtitle.classList.remove("appear_title");
-        subtitle.classList.remove("disappear_title");
+    //Animated bars opacity
+    for(let i = 0 ; i < lines.length ; i++){
+        let _line = lines[i];
+        for(let j = 0 ; j < configurations.lineContainer.length ; j++){
+            let _change = configurations.lineContainer[j];
+            if(_change.from <= ratio && ratio < _change.to){
+                let _changePercentage = (ratio - _change.from)/(_change.to - _change.from);
+                _line.style[_change.property] = simpleInterpolation(_change.initialValue,_change.finalValue,_changePercentage);   
+            }
+        }
+    }
+    //Animate bars disappear
+    for(let i = 0 ; i < lines_container.length ; i++){
+        let comp =  lines_container[i];
+        for(let j = 0 ; j < configurations.section1__subcontainer_bottom.length ; j++){
+            let _change = configurations.section1__subcontainer_bottom[j];
+            if(_change.from <= ratio && ratio < _change.to){
+                if(_change.property == "class"){
+                    if(_change.direction == scroll_direction){
+                        comp.classList.add(_change.name);
+                    } else {
+                        comp.classList.remove(_change.name);
+                    }
+                }
+            }
+        }
     }
     
-
 });
