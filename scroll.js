@@ -8,7 +8,7 @@ class scrollListener {
     component_configurations = [];
     topElementClass = "";
     last_position = 0;
-    
+    scroll_container_comp = null;
     colorInterpolation = (initial,final,percent) => {
         //Gets initial and final values of red, green and blue on decimal
         let initial_red   = parseInt(initial.substring(1,3),16);
@@ -37,7 +37,9 @@ class scrollListener {
         if(_change.from <= _ratio && _ratio < _change.to){
             if(_change.property_type == "class"){
                 if(_change.direction == _scroll_direction){
+                    
                     for(let k = 0 ; k < _change.add.length ; k++){
+                        
                         _comp.classList.add(_change.add[k]);
                     }
                     for(let k = 0 ; k < _change.remove.length ; k++){
@@ -58,6 +60,20 @@ class scrollListener {
                 let new_background = _change.final_value;
                 let _percent_for_color = (_ratio - _change.from) / (_change.to - _change.from);  
                 _comp.style.backgroundColor = this.colorInterpolation(old_background,new_background,_percent_for_color);
+            } else if (_change.property_type == "linear_transform") {
+                //https://www.w3.org/wiki/Dynamic_style_-_manipulating_CSS_with_JavaScript
+    
+                let stylesheet = document.styleSheets[1];
+                
+                console.log(stylesheet);
+                if(_change.direction == _scroll_direction){
+                    console.log(stylesheet.title);
+                    stylesheet.insertRule(`.${_change.class} { border: 1px solid black;}`, 0);
+                    _comp.classList.add(_change.class);
+                } else {
+                    stylesheet.deleteRule(0);
+                    _comp.classList.remove(_change.class);
+                }
             }
         }
     };
@@ -67,12 +83,14 @@ class scrollListener {
         let      viewport_height = position_data.height;
         let         top_distance = position_data.top * -1;
         let         new_position = top_distance;
-              this.last_position = new_position;
-        return {
+              
+        let return_obj = {
             "__ratio":top_distance/viewport_height,
             "__remainder_percentage":(top_distance % viewport_height) / 1000,
             "__scroll_direction":(this.last_position - new_position < 0) ? "down" : "up"
         };
+        this.last_position = new_position;
+        return return_obj
     };
     applyRules = ()=>{
         //Uses top element as reference to know the vertical position
@@ -80,7 +98,6 @@ class scrollListener {
         let __ratio = measurements.__ratio;
         let __remainder_percentage = measurements.__remainder_percentage;
         let __scroll_direction = measurements.__scroll_direction;
-        
         // For each list of components
         for(let i = 0 ; i < this.component_configurations.length ; i++){
             // For each component
@@ -93,6 +110,10 @@ class scrollListener {
             }
         }
     };
-}
+    setScrollEvent = (scroll_container)=>{
+        this.scroll_container_comp = document.getElementsByClassName(scroll_container)[0];
+        this.scroll_container_comp.addEventListener("scroll",()=>this.applyRules());
+    };
+};
 
 

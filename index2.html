@@ -8,13 +8,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=JetBrains+Mono:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="stack.css">
+    <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="lines.css">
     <title>Document</title>
 </head>
 <body>
-    <div class="scroll-container">
-        <nav>
-            <div class="nav__content">
+    <div class="background">
+        <!-- absolutes -->
+        <nav class="nav__content">
                 <div class="nav__content-left">
                     <div class="hamburger">
                         <div class="hamburger-line"></div>
@@ -26,43 +29,57 @@
                 <div class="nav__content-rigth">
                     <div class="language"> EN <img src="./assets/eng.png" alt=""> | ES <img src="./assets/es.png" alt=""></div>
                 </div>
-            </div>
         </nav>
-        <section class="section1 section">         
-            <div class="section1__subcontainer-top">
-            </div>
-            <div class="section1__subcontainer-center">
-                <div class="title1">
-                    <div class="title-space titles">Space</div>
-                </div>
-                <div class="gap"></div>
-                <div class="title2">
-                    <div class="title-maze titles">maze</div>
-                </div>
-            </div>
-            <div class="section1__subcontainer-bottom section1__subcontainer-bottom-style">
-                <div class="two-lines-container ">
-                    <div class="line1-container lineContainer">
-                        <div class="line1"></div>
-                    </div>
-                    <div class="line2-container lineContainer">
-                        <div class="line2"></div>
-                    </div>
-                </div>
-                <div class="subtitle-container titles">Help Elon Musk reach Mars.</div>
-                <div class="line3-container lineContainer">
-                    <div class="line3"></div>
-                </div>
-                
-                
-            </div>
 
+        <div class="all_lines_container">
+            <div class="empty-container">
+                <div></div>
+            </div>
+            <div class="two-lines-container whiteborder">
+                <div class="line1-container">
+                    <div class="line1"></div>
+                </div>
+                <div class="line2-container">
+                    <div class="line2"></div>
+                </div>
+            </div>
+            <div class="line3-container whiteborder">
+                <div class="line3"></div>
+            </div>
+        </div>
+
+        <!-- scrollables -->
+        <div class="scroll-container">
             
-        </section>
-        <section class="section2 section"></section>
-        <section class="section3 section"></section>
+            <section class="section1">         
+                <div class="section1__subcontainer-top">
+                </div>
+                <div class="section1__subcontainer-center">
+                    <div class="title1">
+                        <div class="title-space titles">Space</div>
+                    </div>
+                    <div class="gap"></div>
+                    <div class="title2">
+                        <div class="title-maze titles">maze</div>
+                    </div>
+                </div>
+                <div class="section1__subcontainer-bottom section1__subcontainer-bottom-style">
+                    
+                    <div class="subtitle-container titles">Help Elon Musk reach Mars.</div>
+                    
+                    
+                    
+                </div>
 
+                
+            </section>
+            <section class="section2"></section>
+
+        </div>
+            
     </div>
+
+        
     <script src="scroll.js"></script>
     <script src="main2.js"></script>
 </body>
