@@ -37,20 +37,19 @@ class scrollListener {
         if(_change.from <= _ratio && _ratio < _change.to){
             if(_change.property_type == "class"){
                 if(_change.direction == _scroll_direction){
-                    
                     for(let k = 0 ; k < _change.add.length ; k++){
                         
-                        _comp.classList.add(_change.add[k]);
+                        _comp.classList.add((_change.add[k] != "") ? _change.add[k] : "a");
                     }
                     for(let k = 0 ; k < _change.remove.length ; k++){
-                        _comp.classList.remove(_change.remove[k]);
+                        _comp.classList.remove((_change.remove[k] != "") ? _change.remove[k] : "a")
                     }
                 } else {
                     for(let k = 0 ; k < _change.add.length ; k++){
-                        _comp.classList.remove(_change.add[k]);
+                        _comp.classList.remove((_change.add[k] != "") ? _change.add[k] : "a");
                     }
                     for(let k = 0 ; k < _change.remove.length ; k++){
-                        _comp.classList.add(_change.remove[k]);
+                        _comp.classList.add((_change.remove[k] != "") ? _change.remove[k] : "a");
                     }
                 }
             } else if (_change.property_type == "linear") {

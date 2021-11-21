@@ -48,45 +48,63 @@ scrollAnimations.ui_rules_configurations = {
     "rocket_video-container":[
         {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":0.2},
         {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":0.2,"to":1},
-        // {"property_type":"linear","property_name":"border-radius","initial_value":0,"final_value":1,"from":0.7,"to":1,"unit":"%"},
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":1.2,"to":2},
     ],
     "star_video_container":[
         {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":1,"from":0,"to":0.2},
         {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":0.2,"to":1},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":1.4,"to":2},
     ],
     "my_name":[
-        {"property_type":"class","direction":"down","from":0.8,"to":1.1,
+        {"property_type":"class","direction":"down","from":0.5,"to":0.7,
             "add":["disappear_left"],
             "remove":["appear_left"]
         }
     ],   
     "item0":[
         {"property_type":"class","direction":"down","from":0.9,"to":1.1,
-            "add":["appear_up0"],
+            "add":["appear_down0"],
             "remove":["disappear_down0"]
+        },
+        {"property_type":"class","direction":"down","from":1.6,"to":2,
+            "add":["disappear_up0"],
+            "remove":[""]
         }
     ],
     "item1":[
         {"property_type":"class","direction":"down","from":0.9,"to":1.1,
-            "add":["appear_up1"],
+            "add":["appear_down1"],
             "remove":["disappear_down1"]
+        },
+        {"property_type":"class","direction":"down","from":1.6,"to":2,
+            "add":["disappear_up1"],
+            "remove":[""]
         }
     ],
     "item2":[
         {"property_type":"class","direction":"down","from":0.9,"to":1.1,
-            "add":["appear_up2"],
+            "add":["appear_down2"],
             "remove":["disappear_down2"]
+        },
+        {"property_type":"class","direction":"down","from":1.6,"to":2,
+            "add":["disappear_up2"],
+            "remove":[""]
         }
     ],
     "item3":[
         {"property_type":"class","direction":"down","from":0.9,"to":1.1,
-            "add":["appear_up3"],
+            "add":["appear_down3"],
             "remove":["disappear_down3"]
+        },
+        {"property_type":"class","direction":"down","from":1.6,"to":2,
+            "add":["disappear_up3"],
+            "remove":[""]
         }
     ],
     "section2_title":[
-        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":0.8},
-        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":0.7,"to":1},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":0.5},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":0.5,"to":1},
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":1.3,"to":2},
     ]
 };
 scrollAnimations.component_configurations = [
