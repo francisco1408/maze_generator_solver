@@ -54,7 +54,7 @@ class scrollListener {
                     }
                 }
             } else if (_change.property_type == "linear") {
-                _comp.style[_change.property_name] = this.simpleInterpolation(_change.initialValue,_change.finalValue,(_ratio - _change.from)/(_change.to - _change.from));   
+                _comp.style[_change.property_name] = this.simpleInterpolation(_change.initial_value,_change.final_value,(_ratio - _change.from)/(_change.to - _change.from));   
             } else if (_change.property_type == "color") {
                 let old_background = _change.initial_value;
                 let new_background = _change.final_value;
@@ -105,6 +105,7 @@ class scrollListener {
                 let comp = this.component_configurations[i].component_list[j];
                 // For each change
                 for(let k = 0 ; k < this.ui_rules_configurations[this.component_configurations[i].configuration_key].length ; k++){
+                    
                     this.applyChange(this.ui_rules_configurations[this.component_configurations[i].configuration_key][k], comp, __ratio,__remainder_percentage,__scroll_direction);
                 }
             }

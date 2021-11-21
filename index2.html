@@ -16,7 +16,10 @@
 </head>
 <body>
     <div class="background">
+        <!--  -->
         <!-- absolutes -->
+        <!--  -->
+        <!-- nav var -->
         <nav class="nav__content">
                 <div class="nav__content-left">
                     <div class="hamburger">
@@ -24,14 +27,14 @@
                         <div class="hamburger-line"></div>
                         <div class="hamburger-line"></div>
                     </div>
-                    <div class="name">JAVIER VALDÉS HERRERA</div>
+                    <div class="name appear_left">JAVIER VALDÉS HERRERA</div>
                 </div>
                 <div class="nav__content-rigth">
                     <div class="language"> EN <img src="./assets/eng.png" alt=""> | ES <img src="./assets/es.png" alt=""></div>
                 </div>
         </nav>
-
-        <div class="all_lines_container">
+        <!-- lines initial  -->
+        <!-- <div class="all_lines_container">
             <div class="empty-container">
                 <div></div>
             </div>
@@ -46,9 +49,31 @@
             <div class="line3-container whiteborder">
                 <div class="line3"></div>
             </div>
+        </div> -->
+        <!-- tunel -->
+        <div class="tunel_container">
+            <div class="tunel_subcontainer">
+                <video autoplay muted loop class="tunel_video">
+                    <source src="./assets/tunel_video.mp4" type="video/mp4">
+                </video>
+            </div>
+                
         </div>
-
+        <!-- stars video -->
+        <div class="star_video-container">
+            <video autoplay muted loop class="star_video">
+                <source src="./assets/star_background_video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <!-- rocket video -->
+        <div class="rocket_video-container">
+            <video autoplay muted loop class="rocket_video">
+                <source src="./assets/rocket_video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <!--  -->
         <!-- scrollables -->
+        <!--  -->
         <div class="scroll-container">
             
             <section class="section1">         
@@ -73,7 +98,41 @@
 
                 
             </section>
-            <section class="section2"></section>
+            <section class="section2">
+                <div class="section2_title">
+                    HOW IT WORKS
+                </div>
+                <div class="section2_intro">
+                    <div class="section2_intro_txt item0 disappear_down0">
+                        This is a graphical demostration of how different 
+                        maze-generating algorithms operate, as well as 
+                        maze-solving algorithms.
+                    </div>
+                    
+                </div>
+                <div class="section2_itemsContainer">
+                    <div class="section2_item item1 disappear_down1">
+                        <div class="section2_item_numberContainer">
+                            <div class="numberBall number1">1</div>
+                        </div>
+                        <div class="section2_item_text">Select the number of rows and columns.
+                        </div>
+                    </div>
+                    <div class="section2_item item2 disappear_down2">
+                        <div class="section2_item_numberContainer">
+                            <div class="numberBall">2</div>
+                        </div>
+                        <div class="section2_item_text">Click on generate maze
+                        </div>
+                    </div>
+                    <div class="section2_item item3 disappear_down3">
+                        <div class="section2_item_numberContainer">
+                            <div class="numberBall number3">3</div>
+                        </div>
+                        <div class="section2_item_text">Click on solve maze</div>
+                    </div>
+                </div>
+            </section>
 
         </div>
             
