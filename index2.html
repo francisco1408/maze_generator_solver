@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="stack.css">
     <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="maze.css">
     <link rel="stylesheet" href="style2.css">
     <link rel="stylesheet" href="lines.css">
     <title>Document</title>
@@ -154,8 +155,8 @@
                         LET'S START
                     </div>
                     <div class="section3_body">
-                        <div class="mazeContainer">
-
+                        <div class="mazeContainer maze-frame">
+                            <div class="maze" id = "maze1"></div>
                         </div>
                         <div class="mazeControls">
                             <div class="control_container input_container">
@@ -163,7 +164,7 @@
                                     <div class="noButton">
                                         Number or rows
                                     </div>
-                                    <input type="text" class="input" placeholder="a number like 10 or something">
+                                    <input type="text" class="input" id="rows" placeholder="a number like 10 or something">
                                 </div>
                             </div>
                             <div class="control_container input_container">
@@ -171,14 +172,14 @@
                                     <div class="noButton">
                                         Number of columns
                                     </div>
-                                    <input type="text" class="input" placeholder="a number like 10 or something">
+                                    <input type="text" class="input" id="columns" placeholder="a number like 10 or something">
                                 </div>
                             </div>
                             <div class="control_container">
-                                <div class="button1">Generate maze</div>
+                                <div class="button1" id="generate">Generate maze</div>
                             </div>
                             <div class="control_container">
-                                <div class="button2">Solve maze</div>
+                                <div class="button2" id="solve">Solve maze</div>
                             </div>
                         </div>
 
@@ -191,7 +192,7 @@
             
     </div>
 
-        
+    <script src="maze.js"></script>
     <script src="scroll.js"></script>
     <script src="main2.js"></script>
 </body>

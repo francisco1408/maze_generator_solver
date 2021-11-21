@@ -344,6 +344,7 @@ body{
     align-items: center;
 }
 .button1{
+    user-select:none;
     height: 50%;
     width: 100%;
     background-color: #962B9F;
@@ -358,6 +359,7 @@ body{
                 4px 4px 1px #35D1C1;
 }
 .button2{
+    user-select:none;
     height: 50%;
     width: 100%;
     background-color: #35D1C1;
@@ -371,6 +373,7 @@ body{
     box-shadow: 4px 4px 1px #962B9F;
 }
 .noButton{
+    user-select:none;
     height: 50%;
     width: 100%;
     background-color: #4A44BF;
@@ -387,6 +390,12 @@ body{
 
 .button1:hover,.button2:hover{
     transform: scale(1.01);
+    cursor: pointer;
+}
+.button1:active,.button2:active{
+    user-select:none;
+    transform: scale(1);
+    cursor: pointer;
 }
 .controlInput{
     height: 100%;
@@ -403,20 +412,20 @@ body{
     border: 0px;
     outline: none;
     border-bottom: 2px solid #FFFFFF;
-    transition: 1s;
+    transition: 0.5s;
     background: rgb(132,177,179);
     background: linear-gradient(0deg, rgba(132,177,179,1) 0%, rgba(0,0,0,0.5) 30%, rgba(255,255,255,0) 100%);
     text-align: center;
     font-family: 'Inter', sans-serif;
     font-size: 1em;
 }
-.input_container:hover > .controlInput > .input{
+.input:focus,.input_container:hover > .controlInput > .input{
+    transform: scaleX(1.08);
+    border-bottom: 2px solid #3d40ee;
+    transition: 0.8s;
+}
+/* {
     transform: scaleX(1.08);
     border-bottom: 2px solid #3d40ee;
     transition: 0.5s;
-}
-.input:focus{
-    transform: scaleX(1.08);
-    border-bottom: 2px solid #3d40ee;
-    transition: 0.5s;
-}
+} */
