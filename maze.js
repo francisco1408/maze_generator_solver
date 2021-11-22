@@ -25,6 +25,7 @@ class cell {
         this.updateClassInDOM();
     }
     setGreen(){
+        
         this.colorCss_class = "green-cell";
         this.buildCssClass();
         this.buildDomElement();
@@ -110,7 +111,7 @@ class cell {
     CSSclass = "";
     id = 0;
     colorCss_class = "";
-    domElement = "<div id = 'cell" + this.id + "' class =" + "'" + this.CSSclass + "'"  + ">a</div>";
+    domElement = "<div id = 'cell" + this.id + "' class = cell" + "'" + this.CSSclass + "'"  + ">a</div>";
 }
 class maze {
     constructor(rows,columns,mazeid){
@@ -130,11 +131,39 @@ class maze {
         for (let j = 0 ; j < numberOfWalls ; j++){
             this.walls.push(true);
         }
-        
+        //Gets stylesheet
+        let stylesheets = document.styleSheets;
+        for(let y = 0 ; y < stylesheets.length ; y++){
+            if(stylesheets[y].title == "maze"){
+                this.stylesheet = stylesheets[y];
+            }
+        }
     }
     ran = ()=> ((Math.random() * (1 - 0) + 0) < 0.75) ? false : true; 
     generateMaze(){
         let construct = new constructionWorker(0,0,this.columnsNumber,this.mazeID);
+    }
+    setColor_visitedCellColor(color){
+        this.setVariable("--visitedCellColor",color);
+    }
+    setColor_hoverCellColor(color){
+        this.setVariable("--hoverCellColor",color);
+    }
+    setColor_solutionCellColor(color){
+        this.setVariable("--solutionCellColor",color);
+    }
+    setColor_exploredCellColor(color){
+        this.setVariable("--exploredCellColor",color);
+    }
+    setColor_wallBorderColor(color){
+        this.setVariable("--wallBorderColor",color);
+    }
+    setColor_wallBorderThickness(thickness){
+        this.setVariable("--wallBorderThickness",thickness);
+    }
+    setVariable(name,value){
+        let root = document.querySelector(':root');
+        root.style.setProperty(name,value);
     }
     rowsNumber = 0;
     columnsNumber = 0;
@@ -143,6 +172,7 @@ class maze {
     mazeID = 0;
     mazeTagID = "";
     visitedCells = [];
+    stylesheet = null;
     givePercentages(r,c){
         if(r == null && c == null){
             r = this.rowsNumber;
@@ -330,7 +360,6 @@ class solver {
 
         let found_it = false;
         while(!found_it){
-            console.log("find path iteration");
             let response = await this.exploreCell(currentWaveFront,targetCell);
             if(response[0]){
                 found_it = true;
@@ -343,8 +372,7 @@ class solver {
         ////....
         this.colorGreenExploredCells(currentWaveFront,[]);
         ////...
-        console.log("wave fronts");
-        console.log(this.wave_fronts);
+       
         // Now lets go back
         let the_path = [targetCell];
         let __backwards_cell = targetCell; 
@@ -368,8 +396,7 @@ class solver {
                     }
                 }
         }
-        console.log("the_path:");
-        console.log(the_path);
+        
         //Changes color of solution path cells
         this.printPath(the_path);
     }
@@ -402,11 +429,10 @@ class solver {
         });
     }
     async printPath(path){
-        console.log("Print_path");
-        console.log(path);
+        
         let it_counter = 0;
         while(it_counter < path.length){
-            console.log(it_counter);
+            
             let color = await this.colorCell(path[it_counter]);
             it_counter++;
         }

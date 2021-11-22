@@ -135,7 +135,10 @@ document.getElementById("generate").addEventListener("click",()=>{
     maze1.givePercentages(rows,columns);
     mazes.push(maze1);
     maze1.generateMaze();
-    
+    maze1.setColor_wallBorderColor("rgba(255,100,255,1)");
+    maze1.setColor_wallBorderThickness("0.09em");
+    maze1.setColor_visitedCellColor("#00000000");
+    maze1.setColor_solutionCellColor("#4422a8");
 });
 //Solver button
 let solver_button = document.getElementById("solve");
@@ -144,3 +147,4 @@ solver_button.addEventListener("click",()=>{
     let _solver = new solver(mazes.length - 1);
     _solver = null;
 })
+

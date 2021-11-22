@@ -64,9 +64,7 @@ class scrollListener {
     
                 let stylesheet = document.styleSheets[1];
                 
-                console.log(stylesheet);
                 if(_change.direction == _scroll_direction){
-                    console.log(stylesheet.title);
                     stylesheet.insertRule(`.${_change.class} { border: 1px solid black;}`, 0);
                     _comp.classList.add(_change.class);
                 } else {

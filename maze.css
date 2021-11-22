@@ -1,17 +1,22 @@
 :root{
     --visitedCellColor:#ff5599;
     --hoverCellColor: #aa22aa;
+    --solutionCellColor: #aa60a6;
+    --exploredCellColor: #60ca90;
+    
+    --wallBorderColor: #243369;
+    
     --hoverCellTransitionVelocity: 0.15s;
     --wallBorderType: solid;
     --wallBorderThickness: 0.05em;
-    --wallBorderColor: #243369;
+    
+
+    
 /* 
     --solutionBorderType: solid;
     --solutionBorderThickness: 0.02em;
     --solutionBorderColor: #6e3b90; */
-    --solutionCellColor: #aa60a6;
-
-    --exploredCellColor: #60ca90;
+    
 }
 .maze{
     height: 100%;
@@ -20,6 +25,9 @@
 .row{
     display: flex;
     width: 100%;
+}
+.cell{
+    /* box-sizing:content-box; */
 }
 .border-top{
     border-top: var(--wallBorderType) var(--wallBorderThickness) var(--wallBorderColor);
