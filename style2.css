@@ -241,12 +241,12 @@ body{
 .appear_down0,.appear_down1,.appear_down2,.appear_down3{
     transform: translateY(0);
     opacity:1;
-    transition-duration: 0.1s;
+    transition-duration: 0.7s;
 }
 .disappear_down0,.disappear_down1,.disappear_down2,.disappear_down3{
     transform: translateY(200px);
     opacity:0;
-    transition-duration: 0.1s;
+    transition-duration: 0.7s;
 }
 .appear_down0,.disappear_down0{
     transition-delay: 0.1s;
@@ -325,7 +325,7 @@ body{
     /* border: 1px solid orange; */
     height: calc(100vh - var(--hambuerger-height) - 2*var(--margin));
     width: calc(100vh - var(--hambuerger-height) - 2*var(--margin));
-    transform: translateX(calc(1.5*var(--hambuerger-height)));
+    
 }
 .mazeControls{
     /* border: 1px solid orange; */
@@ -429,3 +429,34 @@ body{
     border-bottom: 2px solid #3d40ee;
     transition: 0.5s;
 } */
+.superMazeeContainer{
+    /* border: 1px solid red; */
+    height: 100%;
+    width: calc(100vh - var(--hambuerger-height));
+    display: flex;
+    justify-content: center;
+    transform: translateX(calc(1.5*var(--hambuerger-height)));
+}
+.beforeMaze{
+    /* border: 1px solid red; */
+    height: 100%;
+    width: fit-content;
+}
+.afterMaze{
+    /* border: 1px solid red; */
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+.mars{
+    height: 100px;
+    width: 100px;
+    transform: translateY(50px);
+}
+.rocket{
+    height: 38.5px;
+    width: 50px;
+}
+

@@ -36,6 +36,9 @@ class scrollListener {
     applyChange = (_change,_comp,_ratio,_remainder_percentage,_scroll_direction)=>{
         if(_change.from <= _ratio && _ratio < _change.to){
             if(_change.property_type == "class"){
+                // if(_change.control != undefined){
+                //     console.log(_change);
+                // }
                 if(_change.direction == _scroll_direction){
                     for(let k = 0 ; k < _change.add.length ; k++){
                         
@@ -80,7 +83,7 @@ class scrollListener {
         let      viewport_height = position_data.height;
         let         top_distance = position_data.top * -1;
         let         new_position = top_distance;
-              
+        // console.log(top_distance/viewport_height);
         let return_obj = {
             "__ratio":top_distance/viewport_height,
             "__remainder_percentage":(top_distance % viewport_height) / 1000,

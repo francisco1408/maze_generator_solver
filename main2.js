@@ -1,19 +1,24 @@
 let scrollAnimations = new scrollListener();
 
 //Gets dom elements
-let              background = document.getElementsByClassName("background");
-let                  titles = document.getElementsByClassName("titles");
-let                   lines = document.getElementsByClassName("all_lines_container");
+let               background = document.getElementsByClassName("background");
+let                   titles = document.getElementsByClassName("titles");
+let                    lines = document.getElementsByClassName("all_lines_container");
 // let         lines_container = document.getElementsByClassName("section1__subcontainer-bottom");
-let  rocket_video_container = document.getElementsByClassName("rocket_video-container");
-let    star_video_container = document.getElementsByClassName("star_video-container");
-let         tunel_container = document.getElementsByClassName("tunel_container");
-let                 my_name = document.getElementsByClassName("name");
-let                   item0 = document.getElementsByClassName("item0");
-let                   item1 = document.getElementsByClassName("item1");
-let                   item2 = document.getElementsByClassName("item2");
-let                   item3 = document.getElementsByClassName("item3");
-let          section2_title = document.getElementsByClassName("section2_title");
+let   rocket_video_container = document.getElementsByClassName("rocket_video-container");
+let     star_video_container = document.getElementsByClassName("star_video-container");
+let          tunel_container = document.getElementsByClassName("tunel_container");
+let                  my_name = document.getElementsByClassName("name");
+let                    item0 = document.getElementsByClassName("item0");
+let                    item1 = document.getElementsByClassName("item1");
+let                    item2 = document.getElementsByClassName("item2");
+let                    item3 = document.getElementsByClassName("item3");
+let           section2_title = document.getElementsByClassName("section2_title");
+let section3_title_container = document.getElementsByClassName("section3_title_container");
+let                 control1 = document.getElementsByClassName("control1");
+let                 control2 = document.getElementsByClassName("control2");
+let                 control3 = document.getElementsByClassName("control3");
+let                 control4 = document.getElementsByClassName("control4");
 
 //Set reference for scroll position 
 scrollAnimations.topElementClass = "section1";
@@ -105,7 +110,35 @@ scrollAnimations.ui_rules_configurations = {
         {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":0.5},
         {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":0.5,"to":1},
         {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":1.3,"to":2},
-    ]
+    ],
+    "section3_title_container":[
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":1.3},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":1.3,"to":2},
+    ],
+    "control1":[
+        {"property_type":"class","direction":"down","from":1.9,"to":2.1,
+            "add":["appear_down0"],
+            "remove":["disappear_down3"]
+        },
+    ],
+    "control2":[
+        {"property_type":"class","direction":"down","from":1.9,"to":2.1,
+            "add":["appear_down1"],
+            "remove":["disappear_down2"]
+        },
+    ],
+    "control3":[
+        {"property_type":"class","direction":"down","from":1.9,"to":2.1,
+            "add":["appear_down2"],
+            "remove":["disappear_down1"]
+        },
+    ],
+    "control4":[
+        {"property_type":"class","direction":"down","from":1.9,"to":2.1,"control":"Kiki",
+            "add":["appear_down3"],
+            "remove":["disappear_down0"]
+        },
+    ],
 };
 scrollAnimations.component_configurations = [
     // {"component_list":background, "configuration_key":"background"},
@@ -121,6 +154,11 @@ scrollAnimations.component_configurations = [
     {"component_list":item2, "configuration_key":"item2"},
     {"component_list":item3, "configuration_key":"item3"},
     {"component_list":section2_title, "configuration_key":"section2_title"},
+    {"component_list":section3_title_container, "configuration_key":"section3_title_container"},
+    {"component_list":control1, "configuration_key":"control1"},
+    {"component_list":control2, "configuration_key":"control2"},
+    {"component_list":control3, "configuration_key":"control3"},
+    {"component_list":control4, "configuration_key":"control4"},
 ];
 scrollAnimations.setScrollEvent("scroll-container");
 //Sets maze

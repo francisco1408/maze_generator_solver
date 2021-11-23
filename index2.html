@@ -155,12 +155,20 @@
                         LET'S START
                     </div>
                     <div class="section3_body">
-                        <div class="mazeContainer maze-frame">
-                            <div class="maze" id = "maze1"></div>
+                        <div class="superMazeeContainer">
+                            <div class="beforeMaze">
+                                <img src="./assets/rocket.png" alt="" class="rocket">
+                            </div>
+                            <div class="mazeContainer maze-frame">
+                                <div class="maze" id = "maze1"></div>
+                            </div>
+                            <div class="afterMaze">
+                                <img src="./assets/mars.gif" alt="" class="mars">
+                            </div>
                         </div>
                         <div class="mazeControls">
                             <div class="control_container input_container">
-                                <div class="controlInput">
+                                <div class="controlInput control1 disappear_down3">
                                     <div class="noButton">
                                         Number or rows
                                     </div>
@@ -168,21 +176,20 @@
                                 </div>
                             </div>
                             <div class="control_container input_container">
-                                <div class="controlInput">
+                                <div class="controlInput control2 disappear_down2">
                                     <div class="noButton">
                                         Number of columns
                                     </div>
                                     <input type="text" class="input" id="columns" placeholder="a number like 10 or something">
                                 </div>
                             </div>
-                            <div class="control_container">
+                            <div class="control_container control3 disappear_down1">
                                 <div class="button1" id="generate">Generate maze</div>
                             </div>
-                            <div class="control_container">
+                            <div class="control_container control4 disappear_down0">
                                 <div class="button2" id="solve">Solve maze</div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 
