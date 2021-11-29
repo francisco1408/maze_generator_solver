@@ -51,14 +51,18 @@ scrollAnimations.ui_rules_configurations = {
         {"property_type":"color","initial_value":"#160637","final_value":"#050141","from":0.5,"to":1.1},
     ],
     "rocket_video-container":[
-        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":0.2},
-        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":0.2,"to":1},
-        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":1.2,"to":2},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":0.3},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":0.3,"to":1},
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":1,"from":1,"to":3},
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":3,"to":3.7},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":3.7,"to":4},
     ],
     "star_video_container":[
-        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":1,"from":0,"to":0.2},
-        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":0.2,"to":1},
-        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":1.4,"to":2},
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":1,"from":0,"to":0.3},
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":0.3,"to":1},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":1,"to":3},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":3,"to":3.7},
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":1,"from":3.7,"to":4},
     ],
     "my_name":[
         {"property_type":"class","direction":"down","from":0.5,"to":0.7,
@@ -71,7 +75,7 @@ scrollAnimations.ui_rules_configurations = {
             "add":["appear_down0"],
             "remove":["disappear_down0"]
         },
-        {"property_type":"class","direction":"down","from":1.6,"to":2,
+        {"property_type":"class","direction":"down","from":2.6,"to":3,
             "add":["disappear_up0"],
             "remove":[""]
         }
@@ -81,7 +85,7 @@ scrollAnimations.ui_rules_configurations = {
             "add":["appear_down1"],
             "remove":["disappear_down1"]
         },
-        {"property_type":"class","direction":"down","from":1.6,"to":2,
+        {"property_type":"class","direction":"down","from":2.6,"to":3,
             "add":["disappear_up1"],
             "remove":[""]
         }
@@ -91,7 +95,7 @@ scrollAnimations.ui_rules_configurations = {
             "add":["appear_down2"],
             "remove":["disappear_down2"]
         },
-        {"property_type":"class","direction":"down","from":1.6,"to":2,
+        {"property_type":"class","direction":"down","from":2.6,"to":3,
             "add":["disappear_up2"],
             "remove":[""]
         }
@@ -101,7 +105,7 @@ scrollAnimations.ui_rules_configurations = {
             "add":["appear_down3"],
             "remove":["disappear_down3"]
         },
-        {"property_type":"class","direction":"down","from":1.6,"to":2,
+        {"property_type":"class","direction":"down","from":2.6,"to":3,
             "add":["disappear_up3"],
             "remove":[""]
         }
@@ -109,32 +113,33 @@ scrollAnimations.ui_rules_configurations = {
     "section2_title":[
         {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":0.5},
         {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":0.5,"to":1},
-        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":1.3,"to":2},
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":1,"from":1,"to":2.3},
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":2.3,"to":3},
     ],
     "section3_title_container":[
-        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":1.3},
-        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":1.3,"to":2},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":2.6},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":3.6,"to":4},
     ],
     "control1":[
-        {"property_type":"class","direction":"down","from":1.9,"to":2.1,
+        {"property_type":"class","direction":"down","from":3.6,"to":4.1,
             "add":["appear_down0"],
             "remove":["disappear_down3"]
         },
     ],
     "control2":[
-        {"property_type":"class","direction":"down","from":1.9,"to":2.1,
+        {"property_type":"class","direction":"down","from":3.6,"to":4.1,
             "add":["appear_down1"],
             "remove":["disappear_down2"]
         },
     ],
     "control3":[
-        {"property_type":"class","direction":"down","from":1.9,"to":2.1,
+        {"property_type":"class","direction":"down","from":3.6,"to":4.1,
             "add":["appear_down2"],
             "remove":["disappear_down1"]
         },
     ],
     "control4":[
-        {"property_type":"class","direction":"down","from":1.9,"to":2.1,"control":"Kiki",
+        {"property_type":"class","direction":"down","from":3.6,"to":4.1,"control":"Kiki",
             "add":["appear_down3"],
             "remove":["disappear_down0"]
         },
@@ -186,3 +191,8 @@ solver_button.addEventListener("click",()=>{
     _solver = null;
 })
 
+//Weird bug fix
+document.getElementsByClassName("menu")[0].innerHTML =`<a href="#Home" class="menu_item">Home</a>
+<a href="#How" class="menu_item">How does it work?</a>
+<a href="#Start" class="menu_item">Lets slart!</a>
+<a href="#About" class="menu_item">About</a>`;
