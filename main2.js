@@ -196,3 +196,9 @@ document.getElementsByClassName("menu")[0].innerHTML =`<a href="#Home" class="me
 <a href="#How" class="menu_item">How does it work?</a>
 <a href="#Start" class="menu_item">Lets slart!</a>
 <a href="#About" class="menu_item">About</a>`;
+
+// Remove # anchor on load
+window.location.replace("#"); 
+if (typeof window.history.replaceState == 'function') {
+  history.replaceState({}, '', window.location.href.slice(0, -1));
+}
