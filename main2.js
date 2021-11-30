@@ -19,6 +19,7 @@ let                 control1 = document.getElementsByClassName("control1");
 let                 control2 = document.getElementsByClassName("control2");
 let                 control3 = document.getElementsByClassName("control3");
 let                 control4 = document.getElementsByClassName("control4");
+let       nav__content_rigth = document.getElementsByClassName("nav__content-rigth");
 
 //Set reference for scroll position 
 scrollAnimations.topElementClass = "section1";
@@ -114,35 +115,56 @@ scrollAnimations.ui_rules_configurations = {
         {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":0.5},
         {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":0.5,"to":1},
         {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":1,"from":1,"to":2.3},
-        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":2.3,"to":3},
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":2.3,"to":2.6},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":2.6,"to":3},
     ],
     "section3_title_container":[
         {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":0,"to":2.6},
         {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":1,"from":3.6,"to":4},
     ],
     "control1":[
-        {"property_type":"class","direction":"down","from":3.6,"to":4.1,
+        {"property_type":"class","direction":"down","from":3.6,"to":3.9,
             "add":["appear_down0"],
             "remove":["disappear_down3"]
         },
+        {"property_type":"class","direction":"down","from":4.2,"to":4.6,
+            "add":["disappear_down3"],
+            "remove":["appear_down0"]
+        },
     ],
     "control2":[
-        {"property_type":"class","direction":"down","from":3.6,"to":4.1,
+        {"property_type":"class","direction":"down","from":3.6,"to":3.9,
             "add":["appear_down1"],
             "remove":["disappear_down2"]
         },
+        {"property_type":"class","direction":"down","from":4.2,"to":4.6,
+            "add":["disappear_down2"],
+            "remove":["appear_down1"]
+        },
     ],
     "control3":[
-        {"property_type":"class","direction":"down","from":3.6,"to":4.1,
+        {"property_type":"class","direction":"down","from":3.6,"to":3.9,
             "add":["appear_down2"],
             "remove":["disappear_down1"]
         },
+        {"property_type":"class","direction":"down","from":4.2,"to":4.6,
+            "add":["disappear_down1"],
+            "remove":["appear_down2"]
+        },
     ],
     "control4":[
-        {"property_type":"class","direction":"down","from":3.6,"to":4.1,"control":"Kiki",
+        {"property_type":"class","direction":"down","from":3.6,"to":3.9,"control":"Kiki",
             "add":["appear_down3"],
             "remove":["disappear_down0"]
         },
+        {"property_type":"class","direction":"down","from":4.2,"to":4.6,"control":"Kiki",
+            "add":["disappear_down0"],
+            "remove":["appear_down3"]
+        },
+    ],
+    "nav__content_rigth":[
+        {"property_type":"linear","property_name":"opacity","initial_value":1,"final_value":0,"from":0.5,"to":1},
+        {"property_type":"linear","property_name":"opacity","initial_value":0,"final_value":0,"from":1,"to":2},
     ],
 };
 scrollAnimations.component_configurations = [
@@ -164,6 +186,7 @@ scrollAnimations.component_configurations = [
     {"component_list":control2, "configuration_key":"control2"},
     {"component_list":control3, "configuration_key":"control3"},
     {"component_list":control4, "configuration_key":"control4"},
+    {"component_list":nav__content_rigth, "configuration_key":"nav__content_rigth"},
 ];
 scrollAnimations.setScrollEvent("scroll-container");
 //Sets maze

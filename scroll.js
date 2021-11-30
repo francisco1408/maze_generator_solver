@@ -83,7 +83,6 @@ class scrollListener {
         let      viewport_height = position_data.height;
         let         top_distance = position_data.top * -1;
         let         new_position = top_distance;
-        console.log(top_distance/viewport_height);
         let return_obj = {
             "__ratio":top_distance/viewport_height,
             "__remainder_percentage":(top_distance % viewport_height) / 1000,
