@@ -16,9 +16,10 @@
     /* background-color: aqua; */
     
 }
-.language > img{
+.language > .translation > img{
     max-height: calc(var(--hambuerger-height)*0.25);
 }
+
 .nav__content-left, .nav__content-right{
     gap: 10px;
 }
@@ -119,4 +120,26 @@
 }
 .menu_container{
     z-index: 7500;
+}
+.nav__content-right{
+    height: 100%;
+}
+.language{
+    height: 100%;
+    width: 15vw;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.spanish,.english{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    transition:0.3s;
+}
+.spanish:hover,.english:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #FFF;
 }

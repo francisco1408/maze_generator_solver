@@ -214,14 +214,61 @@ solver_button.addEventListener("click",()=>{
     _solver = null;
 })
 
-//Weird bug fix
-document.getElementsByClassName("menu")[0].innerHTML =`<a href="#Home" class="menu_item">Home</a>
-<a href="#How" class="menu_item">How does it work?</a>
-<a href="#Start" class="menu_item">Lets slart!</a>
-<a href="#About" class="menu_item">About</a>`;
-
 // Remove # anchor on load
 window.location.replace("#"); 
 if (typeof window.history.replaceState == 'function') {
   history.replaceState({}, '', window.location.href.slice(0, -1));
 }
+
+//Translation logic
+let texts = [
+    {"class":"t0","english":"HOW IT WORKS",
+                    "castellano":"CÓMO FUNCIONA"},
+    {"class":"t1","english":"This is a graphical demostration of how different maze-generating algorithms operate, as well as maze-solving algorithms.",
+                    "castellano":"Esta es una demostración gráfica de cómo operan distintos algoritmos generadores de laberintos, al igual que los algoritmos que los resuelven"},
+    {"class":"t2","english":"Select the number of rows and columns.",
+                    "castellano":"Seleccione el numero de filas y columnas."},
+    {"class":"t3","english":"Click on 'generate maze'",
+                    "castellano":"Click en 'generar laberinto'"},
+    {"class":"t4","english":"Click on 'solve maze'",
+                    "castellano":"Click en 'resolver laberinto'"},
+    {"class":"t5","english":"Help Elon Musk reach Mars.",
+                    "castellano":"Ayuda a Elon Musk a llegar a Marte"},
+    {"class":"t6","english":"GET IN TOUCH",
+                    "castellano":"CONTACTO"},
+    {"class":"t7","english":"SOCIALS",
+                    "castellano":"REDES"},
+    {"class":"t8","english":"LOCATION",
+                    "castellano":"UBICACIÓN"},
+
+    {"class":"t9","english":"Home",
+                    "castellano":"Inicio"},
+    {"class":"t10","english":"How does it work?",
+                    "castellano":"¿Cómo funciona?"},
+    {"class":"t11","english":"Lets slart!",
+                    "castellano":"Comenzar"},
+    {"class":"t12","english":"About",
+                    "castellano":"Contacto"},
+    {"class":"t13","english":"LET'S START",
+                    "castellano":"COMENZAR"},
+
+    {"class":"t14","english":"Number or rows",
+                    "castellano":"Numero de filas"},
+    {"class":"t15","english":"Number of columns",
+                    "castellano":"Numero de columnas"},
+    {"class":"t16","english":"Generate maze",
+                    "castellano":"Generar laberinto"},
+    {"class":"t17","english":"Solve maze",
+                    "castellano":"Resolver laberinto"}
+];
+
+let translate = (lan)=>{
+    for(let k = 0 ; k < texts.length ; k++){
+    //     document.getElementsByClassName(texts[k].class)[0].innerHTML = texts[k][lan];
+        let cosa = document.getElementsByClassName(texts[k].class)[0].innerHTML = texts[k][lan];
+        console.log(cosa);
+    }
+};
+
+document.getElementsByClassName("english")[0].addEventListener("click",(event)=>{translate("english")});
+document.getElementsByClassName("spanish")[0].addEventListener("click",(event)=>{translate("castellano")});
